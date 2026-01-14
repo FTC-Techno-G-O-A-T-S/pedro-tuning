@@ -1,3 +1,4 @@
+https://www.youtube.com/watch?v=gdkefs_VL-w helpful resource to make an auto program
 ## NOTICE
 
 This repository contains the public FTC SDK for the DECODE (2025-2026) competition season.
