@@ -22,9 +22,9 @@ public class autoTesting extends OpMode {
         //Start pos_end pos
         //Drive > movement
         //Shoot > try to score
-        Drive_Startpos_Shootpos,
-        Shoot_Pre,
-        Drive_Shoot_Intake
+        DriveStartposShootpos,
+        //Shoot_Pre,
+        //Drive_Shoot_Intake
     }
 
     PathState pathState;
@@ -32,9 +32,9 @@ public class autoTesting extends OpMode {
     //setting postions
     private final Pose startPose = new Pose(32,136, Math.toRadians(180));
     private final Pose shootPose = new Pose(58,136,Math.toRadians(180));
-    private final Pose intakePose = new Pose(42,84.5, Math.toRadians(180));
+    //private final Pose intakePose = new Pose(42,84.5, Math.toRadians(180));
 
-    private PathChain driveStartShoot, driveShootIntake;
+    private PathChain driveStartShoot;//, driveShootIntake;
 
     //building paths
     public void buildPaths()  {
@@ -43,32 +43,35 @@ public class autoTesting extends OpMode {
                 .addPath(new BezierLine(startPose,shootPose))
                 .setLinearHeadingInterpolation(startPose.getHeading(),shootPose.getHeading())
                 .build();
-        driveShootIntake = follower.pathBuilder()
+        /*driveShootIntake = follower.pathBuilder()
                 .addPath(new BezierLine(shootPose, intakePose))
                 .setLinearHeadingInterpolation(shootPose.getHeading(), intakePose.getHeading())
-                .build();
+                .build();*/
     }
 
     //moving through states
     public void statePathUpdate() {
         switch (pathState) {
-            case Drive_Startpos_Shootpos:
+            case DriveStartposShootpos:
                 follower.followPath(driveStartShoot, true);
-                setPathState(PathState.Shoot_Pre); //reset timer and make new state
+                //setPathState(PathState.Shoot_Pre); //reset timer and make new state
+                telemetry.addLine("drive mode");
                 break;
-            case Shoot_Pre:
+           /* case Shoot_Pre:
                 //check if follower done with path
                 //and time has passed
-                if (!follower.isBusy() && pathTimer.getElapsedTimeSeconds() > 10) {
+                telemetry.addLine("shoot mode");
+                if (!follower.isBusy() && pathTimer.getElapsedTimeSeconds() > 5) {
                     //add shooting code
-                    follower.followPath(driveShootIntake, true);
-                    setPathState(PathState.Drive_Shoot_Intake);
+                    //follower.followPath(driveShootIntake, true);
+                    //setPathState(PathState.Drive_Shoot_Intake);
+                    telemetry.addLine("shooting now");
                 }
                 break;
-            case Drive_Shoot_Intake:
+            /*case Drive_Shoot_Intake:
                 if (!follower.isBusy()) {
                     //intake code
-                }
+                }*/
             default:
                 telemetry.addLine("No State Commanded");
                 break;
@@ -84,7 +87,7 @@ public class autoTesting extends OpMode {
 
     @Override
     public void init() {
-        pathState = PathState.Drive_Startpos_Shootpos;
+        pathState = PathState.DriveStartposShootpos;
         pathTimer = new Timer();
         opModeTimer = new Timer();
         follower = Constants.createFollower(hardwareMap);
