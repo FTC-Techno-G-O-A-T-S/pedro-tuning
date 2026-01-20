@@ -29,8 +29,8 @@ public class makeautowork extends OpMode {
     PathState pathState;
 
     //setting postions
-    private final Pose startPose = new Pose(32,136, Math.toRadians(180));
-    private final Pose shootPose = new Pose(58,136,Math.toRadians(180));
+    private final Pose startPose = new Pose(136,15, Math.toRadians(180));
+    private final Pose shootPose = new Pose(107,15,Math.toRadians(180));
 
 
     private PathChain driveStartShoot;
@@ -50,9 +50,9 @@ public class makeautowork extends OpMode {
             case DriveStartposShootpos:
                 follower.followPath(driveStartShoot, true);
                 telemetry.addLine("drive mode");
-                setPathState(PathState.Shoot_Pre); //reset timer and make new state
+                //setPathState(PathState.Shoot_Pre); //reset timer and make new state
                 break;
-            case Shoot_Pre:
+            /*case Shoot_Pre:
                 //check if follower done with path
                 //and time has passed
                 telemetry.addLine("shoot mode");
@@ -60,7 +60,7 @@ public class makeautowork extends OpMode {
                     //add shooting code
                     telemetry.addLine("shooting now");
                 }
-                break;
+                break;*/
             default:
                 telemetry.addLine("No State Commanded");
                 break;
