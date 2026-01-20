@@ -47,8 +47,8 @@ public class Constants {
             .leftEncoder_HardwareMapName("fl")
             .rightEncoder_HardwareMapName("fr")
             .strafeEncoder_HardwareMapName("bl")
-            .leftEncoderDirection(Encoder.FORWARD)
-            .rightEncoderDirection(Encoder.FORWARD)
+            .leftEncoderDirection(Encoder.REVERSE)
+            .rightEncoderDirection(Encoder.REVERSE)
             .strafeEncoderDirection(Encoder.REVERSE);
             //.IMU_HardwareMapName("imu")
             //.IMU_Orientation(new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.LEFT, RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD));

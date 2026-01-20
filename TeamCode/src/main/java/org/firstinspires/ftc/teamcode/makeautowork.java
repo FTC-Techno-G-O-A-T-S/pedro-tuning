@@ -23,6 +23,7 @@ public class makeautowork extends OpMode {
         //Shoot > try to score
         DriveStartposShootpos,
         Shoot_Pre,
+        stop
 
     }
 
@@ -48,8 +49,9 @@ public class makeautowork extends OpMode {
     public void statePathUpdate() {
         switch (pathState) {
             case DriveStartposShootpos:
-                follower.followPath(driveStartShoot, true);
+                //follower.followPath(driveStartShoot, true);
                 telemetry.addLine("drive mode");
+                setPathState(PathState.stop);
                 //setPathState(PathState.Shoot_Pre); //reset timer and make new state
                 break;
             /*case Shoot_Pre:
